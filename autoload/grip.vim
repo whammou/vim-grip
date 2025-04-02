@@ -85,7 +85,7 @@ function! s:start(...) abort " {{{
             let l:new_port += 1
         endwhile
 
-        let l:cmd = ['grip', l:path, expand(l:new_port), '-b', '--quiet']
+        let l:cmd = ['grip', l:path, expand(l:new_port), '-b', '--user-content', '--render-math', '--quiet']
         let s:grip_instances[l:new_port] = [l:path, s:init_grip_func(l:cmd)]
 
         if !exists(':GripStop') || !exists(':GripClean') ||
@@ -93,7 +93,7 @@ function! s:start(...) abort " {{{
             call grip#create_commands(v:true)
         endif
     else
-        silent! exec '!grip ' . l:path . ' -b --render-math --user-content --quiet '
+        silent! exec '!grip ' . l:path . ' -b --quiet '
     endif
 endfunction " }}}
 
